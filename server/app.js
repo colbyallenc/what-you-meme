@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
-
+const reactViews   = require('express-react-views');
 
 mongoose.connect('mongodb://localhost/what-you-mean-app');
 
@@ -15,6 +15,7 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.engine('jsx', reactViews.createEngine());
 
 // default value for title local
 app.locals.title = 'What You Meme?';
